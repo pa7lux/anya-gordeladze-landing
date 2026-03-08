@@ -9,6 +9,9 @@
           </div>
           <div class="release-info">
             <h3 class="release-title">{{ release.title }}</h3>
+            <div class="release-body">
+              <ContentRenderer :value="release" />
+            </div>
             <div v-if="release.links?.length" class="release-links">
               <a
                 v-for="link in release.links"
@@ -23,9 +26,6 @@
                   <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.2" />
                 </svg>
               </a>
-            </div>
-            <div class="release-body">
-              <ContentRenderer :value="release" />
             </div>
           </div>
         </article>
@@ -69,14 +69,16 @@ const { data } = await useAsyncData('releases', () =>
 
 .release-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .release-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
   padding: 8px 20px;
   font-size: 0.8rem;
   font-weight: 500;
